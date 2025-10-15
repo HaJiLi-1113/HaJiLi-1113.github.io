@@ -4514,19 +4514,19 @@ figure.highlight pre .javascript .function {
   will-change: transform;
   backdrop-filter: blur(7px);
 }
-#page-header.nav-fixed #nav #blog-info {
+#page-header.nav-fixed #nav #none_space {
   color: var(--font-color);
 }
-#page-header.nav-fixed #nav #blog-info:hover {
+#page-header.nav-fixed #nav #none_space:hover {
   color: #49b1f5;
 }
-#page-header.nav-fixed #nav #blog-info .site-name {
+#page-header.nav-fixed #nav #none_space .site-name {
   text-shadow: none;
 }
-#page-header.nav-fixed #nav #blog-info > a:first-child {
+#page-header.nav-fixed #nav #none_space > a:first-child {
   display: none;
 }
-#page-header.nav-fixed #nav #blog-info > a:last-child {
+#page-header.nav-fixed #nav #none_space > a:last-child {
   display: inline;
 }
 #page-header.nav-fixed #nav a,
