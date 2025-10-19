@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>Redis实战</title>
+      <link href="/2025/10/19/2025-10-19Redis%E5%AE%9E%E6%88%98/"/>
+      <url>/2025/10/19/2025-10-19Redis%E5%AE%9E%E6%88%98/</url>
+      
+        <content type="html"><![CDATA[<h1 id="商户查询缓存"><a href="#商户查询缓存" class="headerlink" title="商户查询缓存"></a>商户查询缓存</h1><h2 id="什么是缓存"><a href="#什么是缓存" class="headerlink" title="什么是缓存"></a>什么是缓存</h2><ul><li>什么是缓存？<ul><li>缓存就像自行车、越野车的避震器</li></ul></li><li>举个例子<br>  越野车、山地自行车都有避震器，防止车体加速之后因惯性，在U型地形上飞跃硬着陆导致损坏，像个弹簧意义<br>同样，在实际开发中，系统也需要避震器，防止过高的数据量猛冲系统，导致其操作线程无法及时处理信息而瘫痪<br>在实际开发中，对企业来讲，产品口碑、用户评价都是致命的，所以企业非常重视缓存技术</li><li>缓存(Cache)就是数据交换的缓冲区，俗称的缓存就是缓冲区内的数据，一般从数据库中获取，存储于本地，<div class="tabs"><div class="nav-tabs"><button type="button" class="tab active">本地用高并发</button><button type="button" class="tab">用于Redis等缓存</button><button type="button" class="tab">本地缓存</button></div><div class="tab-contents"><div class="tab-item-content active"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">Static <span class="keyword">final</span> ConcurrentHashMap&lt;K,V&gt; map = <span class="keyword">new</span> <span class="title class_">ConcurrentHashMap</span>&lt;&gt;();</span><br></pre></td></tr></table></figure></div><div class="tab-item-content"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> Cache&lt;K,V&gt; USER_CACHE = CacheBuilder.newBuilder().build();</span><br></pre></td></tr></table></figure></div><div class="tab-item-content"><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">static</span> <span class="keyword">final</span> Map&lt;K,V&gt; map = <span class="keyword">new</span> <span class="title class_">HashMap</span>&lt;&gt;();</span><br></pre></td></tr></table></figure></div></div><div class="tab-to-top"><button type="button" aria-label="scroll to top"><i class="fas fa-arrow-up"></i></button></div></div>由于其被<span class='p red'>static</span>修饰，所以随着类的加载而加载到内存之中，作为本地缓存，由于其又被final修饰，所以其引用之间的关系是固定的，不能改变，因此不用担心复制导致缓存失败<h3 id="为什么要使用缓存"><a href="#为什么要使用缓存" class="headerlink" title="为什么要使用缓存"></a>为什么要使用缓存</h3></li><li>言简意赅：速度快，好用</li><li>缓存数据存储于代码中，而代码运行在内存中，内存的读写性能远高于磁盘，缓存可以大大降低用户访问并发量带来的服务器读写压力</li><li>实际开发中，企业的数据量，少则几十万，多则几千万，这么大的数据量，如果没有缓存来作为避震器系统是几乎撑不住的，所以企业会大量运用缓存技术</li><li>但是缓存也会增加代码复杂度和运营成本</li><li>缓存的作用<ol><li>降低后端负载</li><li>提高读写效率，降低响应时间</li><li>提升用户体验 </li><li>提升用户体验</li></ol></li><li>缓存的成本<ol><li>数据一致性成本</li><li>代码维护成本</li><li>运维成本（一般采用服务器集群，需要多加机器，机器就是钱）<h3 id="如何使用缓存"><a href="#如何使用缓存" class="headerlink" title="如何使用缓存"></a>如何使用缓存</h3></li></ol></li><li>实际开发中，会构筑多级缓存来时系统运行速度进一步提升，例如：本地缓存与Redis中的缓存并发使用</li><li><span class='p red'>浏览器缓存：</span>主要是存在于浏览器端的缓存</li><li><span class='p red'>应用层缓存：</span>可以分为toncat本地缓存，例如之前提到的map或者是使用Redis作为缓存</li><li><span class='p red'>数据库缓存：</span>在数据库中有一片空间是buffer pool，增改查数据都会先加载到mysql的缓存中</li><li><span class='p red'>CPU缓存：</span>当代计算机最大的问题就是CPU性能提升了，但是内存读写速度没有跟上，所以为了适应当下的情况，增加了CPU的L1，L2，L3级的缓存</li></ul>]]></content>
+      
+      
+      <categories>
+          
+          <category> Redis </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> Redis </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Redis基础</title>
       <link href="/2025/10/16/2025-10-16Redis%E5%9F%BA%E7%A1%80/"/>
       <url>/2025/10/16/2025-10-16Redis%E5%9F%BA%E7%A1%80/</url>
@@ -82,9 +107,31 @@
     
     
     <entry>
-      <title>分类</title>
-      <link href="/categories/index.html"/>
-      <url>/categories/index.html</url>
+      <title>关于</title>
+      <link href="/about/index.html"/>
+      <url>/about/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>友链</title>
+      <link href="/link/index.html"/>
+      <url>/link/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>音乐</title>
+      <link href="/music/index.html"/>
+      <url>/music/index.html</url>
       
         <content type="html"><![CDATA[]]></content>
       
@@ -98,6 +145,17 @@
       <url>/js/cursor.js</url>
       
         <content type="html"><![CDATA[var CURSOR;Math.lerp=(t,e,s)=>(1-s)*t+s*e;const getStyle=(t,e)=>{try{return window.getComputedStyle?window.getComputedStyle(t)[e]:t.currentStyle[e]}catch(t){}return""};class Cursor{constructor(){this.pos={curr:null,prev:null},this.pt=[],this.wordIndex=0,this.create(),this.init(),this.render()}move(t,e){this.cursor.style.left=`${t}px`,this.cursor.style.top=`${e}px`}create(){this.cursor||(this.cursor=document.createElement("div"),this.cursor.id="cursor",this.cursor.classList.add("hidden"),document.body.append(this.cursor));var t=document.getElementsByTagName("*");for(let e=0;e<t.length;e++)"pointer"==getStyle(t[e],"cursor")&&this.pt.push(t[e].outerHTML);document.body.appendChild(this.scr=document.createElement("style")),this.scr.innerHTML="* {cursor: url(\"data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 8 8' width='8px' height='8px'><circle cx='4' cy='4' r='4' opacity='1.0' fill='rgba(66, 129, 247, 1)'/></svg>\") 4 4, auto}"}refresh(){this.scr.remove(),this.cursor.classList.remove("hover"),this.cursor.classList.remove("active"),this.pos={curr:null,prev:null},this.pt=[],this.create(),this.init(),this.render()}init(){document.onmouseover=t=>this.pt.includes(t.target.outerHTML)&&this.cursor.classList.add("hover"),document.onmouseout=t=>this.pt.includes(t.target.outerHTML)&&this.cursor.classList.remove("hover"),document.onmousemove=t=>{null==this.pos.curr&&this.move(t.clientX-8,t.clientY-8),this.pos.curr={x:t.clientX-8,y:t.clientY-8},this.cursor.classList.remove("hidden")},document.onmouseenter=t=>this.cursor.classList.remove("hidden"),document.onmouseleave=t=>this.cursor.classList.add("hidden"),document.onmousedown=t=>this.cursor.classList.add("active"),document.onmouseup=t=>this.cursor.classList.remove("active"),document.onclick=t=>this.createClickText(t.clientX,t.clientY)}render(){this.pos.prev?(this.pos.prev.x=Math.lerp(this.pos.prev.x,this.pos.curr.x,.15),this.pos.prev.y=Math.lerp(this.pos.prev.y,this.pos.curr.y,.15),this.move(this.pos.prev.x,this.pos.prev.y)):this.pos.prev=this.pos.curr,requestAnimationFrame(()=>this.render())}createClickText(t,e){const s=document.createElement("div");s.className="click-text",s.textContent="",s.style.left=`${t}px`,s.style.top=`${e}px`;const r=["富强","民主","文明","和谐","自由","平等","公正","法治","爱国","敬业","诚信","友善"],o=r[this.wordIndex];this.wordIndex=(this.wordIndex+1)%r.length,s.className="click-text",s.textContent=o,s.style.left=`${t}px`,s.style.top=`${e}px`,Object.assign(s.style,{position:"fixed",color:"#4281f7",fontSize:"20px",fontWeight:"bold",pointerEvents:"none",zIndex:"10087",transform:"translate(-50%, -50%)",animation:"clickTextAnimation 1s forwards"}),document.body.appendChild(s),setTimeout(()=>{s.parentNode&&s.parentNode.removeChild(s)},1e3)}}CURSOR=new Cursor;]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
+      <title>影片</title>
+      <link href="/movies/index.html"/>
+      <url>/movies/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
       
     </entry>
     
@@ -126,55 +184,22 @@
     
     
     <entry>
+      <title>分类</title>
+      <link href="/categories/index.html"/>
+      <url>/categories/index.html</url>
+      
+        <content type="html"><![CDATA[]]></content>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title></title>
       <link href="/js/universe.js"/>
       <url>/js/universe.js</url>
       
         <content type="html"><![CDATA[function dark(){window.requestAnimationFrame=window.requestAnimationFrame||window.mozRequestAnimationFrame||window.webkitRequestAnimationFrame||window.msRequestAnimationFrame;var t,i,e,s,n=.05,h=document.getElementById("universe"),a=!0,o="226,225,224",r=[];function d(){t=window.innerWidth,i=window.innerHeight,e=.216*t,h.setAttribute("width",t),h.setAttribute("height",i)}function c(){s.clearRect(0,0,t,i);for(var e=r.length,n=0;n<e;n++){var h=r[n];h.move(),h.fadeIn(),h.fadeOut(),h.draw()}}function f(){this.reset=function(){this.giant=u(3),this.comet=!this.giant&&!a&&u(10),this.x=m(0,t-10),this.y=m(0,i),this.r=m(1.1,2.6),this.dx=m(n,6*n)+(this.comet+1-1)*n*m(50,120)+.1,this.dy=-m(n,6*n)-(this.comet+1-1)*n*m(50,120),this.fadingOut=null,this.fadingIn=!0,this.opacity=0,this.opacityTresh=m(.2,1-.4*(this.comet+1-1)),this.do=m(5e-4,.002)+.001*(this.comet+1-1)},this.fadeIn=function(){this.fadingIn&&(this.fadingIn=!(this.opacity>this.opacityTresh),this.opacity+=this.do)},this.fadeOut=function(){this.fadingOut&&(this.fadingOut=!(this.opacity<0),this.opacity-=this.do/2,(this.x>t||this.y<0)&&(this.fadingOut=!1,this.reset()))},this.draw=function(){if(s.beginPath(),this.giant)s.fillStyle="rgba(180,184,240,"+this.opacity+")",s.arc(this.x,this.y,2,0,2*Math.PI,!1);else if(this.comet){s.fillStyle="rgba("+o+","+this.opacity+")",s.arc(this.x,this.y,1.5,0,2*Math.PI,!1);for(var t=0;t<30;t++)s.fillStyle="rgba("+o+","+(this.opacity-this.opacity/20*t)+")",s.rect(this.x-this.dx/4*t,this.y-this.dy/4*t-2,2,2),s.fill()}else s.fillStyle="rgba(226,225,142,"+this.opacity+")",s.rect(this.x,this.y,this.r,this.r);s.closePath(),s.fill()},this.move=function(){this.x+=this.dx,this.y+=this.dy,!1===this.fadingOut&&this.reset(),(this.x>t-t/4||this.y<0)&&(this.fadingOut=!0)},setTimeout(function(){a=!1},50)}function u(t){return Math.floor(1e3*Math.random())+1<10*t}function m(t,i){return Math.random()*(i-t)+t}d(),window.addEventListener("resize",d,!1),function(){s=h.getContext("2d");for(var t=0;t<e;t++)r[t]=new f,r[t].reset();c()}(),function t(){"dark"==document.getElementsByTagName("html")[0].getAttribute("data-theme")&&c(),window.requestAnimationFrame(t)}()}dark();]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>友链</title>
-      <link href="/link/index.html"/>
-      <url>/link/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>影片</title>
-      <link href="/movies/index.html"/>
-      <url>/movies/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title>音乐</title>
-      <link href="/music/index.html"/>
-      <url>/music/index.html</url>
-      
-        <content type="html"><![CDATA[]]></content>
-      
-    </entry>
-    
-    
-    
-    <entry>
-      <title></title>
-      <link href="/css/custom.css"/>
-      <url>/css/custom.css</url>
-      
-        <content type="html"><![CDATA[:root{--trans-light:rgba(255, 255, 255, 0.8);--trans-dark:rgba(25, 25, 25, 0.7);--border-style:1px solid rgb(169, 169, 169);--backdrop-filter:blur(5px) saturate(150%)}#footer{background:0 0!important}#page-header{background:0 0!important}#footer::before{background:0 0!important}#page-header::before{background:0 0!important}[data-theme=dark] #footer::before{background:0 0!important}[data-theme=dark] #page-header::before{background:0 0!important}#pagination{width:100%;margin:auto}#nav .menus_items{position:absolute!important;width:fit-content!important;left:50%!important;transform:translateX(-50%)!important}#nav .menus_items .menus_item:hover .menus_item_child{display:flex!important}.menus_items .menus_items:nth-child(5) .menus_item_child{left:-38px}#page-header,#web_bg{-webkit-animation:imgblur 4s 1 ease-in-out;animation:imgblur 4s 1 ease-in-out}@keyframes imgblur{0%{filter:blur(5px)}100%{filter:blur(0px)}}@-webkit-keyframes imgblur{0%{-webkit-filter:blur(5px)}100%{-webkit-filter:blur(0px)}}@font-face{font-family:ys;src:url(/font/SJ-Narrow-Bold-2.ttf);font-weight:400;font-style:normal;font-display:block}.pace{pointer-events:none;user-select:none;z-index:2;position:fixed;margin:auto;top:4px;left:0;right:0;height:8px;border-radius:8px;width:6rem;background:#eaecf2;overflow:hidden}.pace-inactive .pace-progress{opacity:0;transition:.3s ease-in}.pace.pace-inactive{opacity:0;transition:.3s;top:-8px}.pace .pace-progress{box-sizing:border-box;transform:translate3d(0,0,0);position:fixed;z-index:2;display:block;position:absolute;top:0;right:100%;height:100%;width:100%;background:#49b1f5;background:linear-gradient(to right,#12c2e9,#c471ed,#f64f59);animation:gradient 2s ease infinite;background-size:200%}#universe{display:block;position:fixed;margin:0;padding:0;border:0;outline:0;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:-1}[data-theme=light] #post-info,[data-theme=light] #site-name,[data-theme=light] #site-subtitle,[data-theme=light] #site-title{animation:none}[data-theme=dark] #site-name,[data-theme=dark] #site-title{animation:light_15px 10s linear infinite}[data-theme=dark] #site-subtitle{animation:light_10px 10s linear infinite}[data-theme=dark] #post-info{animation:light_5px 10s linear infinite}@keyframes light_15px{0%{text-shadow:#5636ed 0 0 15px}12.5%{text-shadow:#11ee5e 0 0 15px}25%{text-shadow:#f14747 0 0 15px}37.5%{text-shadow:#f1a247 0 0 15px}50%{text-shadow:#f1ee47 0 0 15px}50%{text-shadow:#b347f1 0 0 15px}62.5%{text-shadow:#002afa 0 0 15px}75%{text-shadow:#ed709b 0 0 15px}87.5%{text-shadow:#39c5bb 0 0 15px}100%{text-shadow:#5636ed 0 0 15px}}@keyframes light_10px{0%{text-shadow:#5636ed 0 0 10px}12.5%{text-shadow:#11ee5e 0 0 10px}25%{text-shadow:#f14747 0 0 10px}37.5%{text-shadow:#f1a247 0 0 10px}50%{text-shadow:#f1ee47 0 0 10px}50%{text-shadow:#b347f1 0 0 10px}62.5%{text-shadow:#002afa 0 0 10px}75%{text-shadow:#ed709b 0 0 10px}87.5%{text-shadow:#39c5bb 0 0 10px}100%{text-shadow:#5636ed 0 0 10px}}@keyframes light_5px{0%{text-shadow:#5636ed 0 0 5px}12.5%{text-shadow:#11ee5e 0 0 5px}25%{text-shadow:#f14747 0 0 5px}37.5%{text-shadow:#f1a247 0 0 15px}50%{text-shadow:#f1ee47 0 0 5px}50%{text-shadow:#b347f1 0 0 5px}62.5%{text-shadow:#002afa 0 0 5px}75%{text-shadow:#ed709b 0 0 5px}87.5%{text-shadow:#39c5bb 0 0 5px}100%{text-shadow:#5636ed 0 0 5px}}#aside-content>.card-widget.card-info{background:linear-gradient(-45deg,#ffd8a8,#ffc1a1,#fba8b3,#e6a8d7,#c3aed6);box-shadow:0 0 5px #424444;position:relative;background-size:400% 400%;-webkit-animation:Gradient 10s ease infinite;-moz-animation:Gradient 10s ease infinite;animation:Gradient 10s ease infinite!important}@-webkit-keyframes Gradient{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}@-moz-keyframes Gradient{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}@keyframes Gradient{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}[data-theme=dark] #aside-content>.card-widget.card-info{background:#191919ee}#aside-content>.card-widget.card-info>#card-info-btn{background-color:#ff667a;border-radius:8px}#cursor{position:fixed;width:16px;height:16px;background:#5e5e5e;border-radius:8px;opacity:.25;z-index:10086;pointer-events:none;transition:.2s ease-in-out;transition-property:background,opacity,transform}#cursor.hidden{opacity:0}#cursor.hover{opacity:.1;transform:scale(2.5);-webkit-transform:scale(2.5);-moz-transform:scale(2.5);-ms-transform:scale(2.5);-o-transform:scale(2.5)}#cursor.active{opacity:.5;transform:scale(.5);-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5)}#recent-posts>.recent-post-item{background:var(--trans-light);backdrop-filter:var(--backdrop-filter);border-radius:25px;border:var(--border-style)}#aside-content .card-widget{background:var(--trans-light);backdrop-filter:var(--backdrop-filter);border-radius:18px;border:var(--border-style)}div#archive,div#page,div#post{background:var(--trans-light);backdrop-filter:var(--backdrop-filter);border:var(--border-style);border-radius:20px}#page-header.nav-fixed #nav{background:rgba(255,255,255,.75);backdrop-filter:var(--backdrop-filter)}[data-theme=dark] #page-header.nav-fixed #nav{background:rgba(0,0,0,.7)!important}[data-theme=dark] #aside-content .card-widget,[data-theme=dark] #recent-posts>.recent-post-item,[data-theme=dark] div#archive,[data-theme=dark] div#page,[data-theme=dark] div#post{background:var(--trans-dark)}[data-theme=dark] #footer::before{background:0 0!important}[data-theme=dark] #page-header::before{background:0 0!important}.read-mode #aside-content .card-widget{background:rgba(158,204,171,.5)!important}.read-mode div#post{background:rgba(158,204,171,.5)!important}[data-theme=dark] .read-mode #aside-content .card-widget{background:rgba(25,25,25,.9)!important;color:#fff}[data-theme=dark] .read-mode div#post{background:rgba(25,25,25,.9)!important;color:#fff}@keyframes clickTextAnimation{0%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-150%) scale(.5)}}.click-text{font-family:ys,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif}]]></content>
       
     </entry>
     
@@ -192,11 +217,11 @@
     
     
     <entry>
-      <title>关于</title>
-      <link href="/about/index.html"/>
-      <url>/about/index.html</url>
+      <title></title>
+      <link href="/css/custom.css"/>
+      <url>/css/custom.css</url>
       
-        <content type="html"><![CDATA[]]></content>
+        <content type="html"><![CDATA[:root{--trans-light:rgba(255, 255, 255, 0.8);--trans-dark:rgba(25, 25, 25, 0.7);--border-style:1px solid rgb(169, 169, 169);--backdrop-filter:blur(5px) saturate(150%)}#footer{background:0 0!important}#page-header{background:0 0!important}#footer::before{background:0 0!important}#page-header::before{background:0 0!important}[data-theme=dark] #footer::before{background:0 0!important}[data-theme=dark] #page-header::before{background:0 0!important}#pagination{width:100%;margin:auto}#nav .menus_items{position:absolute!important;width:fit-content!important;left:50%!important;transform:translateX(-50%)!important}#nav .menus_items .menus_item:hover .menus_item_child{display:flex!important}.menus_items .menus_items:nth-child(5) .menus_item_child{left:-38px}#page-header,#web_bg{-webkit-animation:imgblur 4s 1 ease-in-out;animation:imgblur 4s 1 ease-in-out}@keyframes imgblur{0%{filter:blur(5px)}100%{filter:blur(0px)}}@-webkit-keyframes imgblur{0%{-webkit-filter:blur(5px)}100%{-webkit-filter:blur(0px)}}@font-face{font-family:ys;src:url(/font/SJ-Narrow-Bold-2.ttf);font-weight:400;font-style:normal;font-display:block}.pace{pointer-events:none;user-select:none;z-index:2;position:fixed;margin:auto;top:4px;left:0;right:0;height:8px;border-radius:8px;width:6rem;background:#eaecf2;overflow:hidden}.pace-inactive .pace-progress{opacity:0;transition:.3s ease-in}.pace.pace-inactive{opacity:0;transition:.3s;top:-8px}.pace .pace-progress{box-sizing:border-box;transform:translate3d(0,0,0);position:fixed;z-index:2;display:block;position:absolute;top:0;right:100%;height:100%;width:100%;background:#49b1f5;background:linear-gradient(to right,#12c2e9,#c471ed,#f64f59);animation:gradient 2s ease infinite;background-size:200%}#universe{display:block;position:fixed;margin:0;padding:0;border:0;outline:0;left:0;top:0;width:100%;height:100%;pointer-events:none;z-index:-1}[data-theme=light] #post-info,[data-theme=light] #site-name,[data-theme=light] #site-subtitle,[data-theme=light] #site-title{animation:none}[data-theme=dark] #site-name,[data-theme=dark] #site-title{animation:light_15px 10s linear infinite}[data-theme=dark] #site-subtitle{animation:light_10px 10s linear infinite}[data-theme=dark] #post-info{animation:light_5px 10s linear infinite}@keyframes light_15px{0%{text-shadow:#5636ed 0 0 15px}12.5%{text-shadow:#11ee5e 0 0 15px}25%{text-shadow:#f14747 0 0 15px}37.5%{text-shadow:#f1a247 0 0 15px}50%{text-shadow:#f1ee47 0 0 15px}50%{text-shadow:#b347f1 0 0 15px}62.5%{text-shadow:#002afa 0 0 15px}75%{text-shadow:#ed709b 0 0 15px}87.5%{text-shadow:#39c5bb 0 0 15px}100%{text-shadow:#5636ed 0 0 15px}}@keyframes light_10px{0%{text-shadow:#5636ed 0 0 10px}12.5%{text-shadow:#11ee5e 0 0 10px}25%{text-shadow:#f14747 0 0 10px}37.5%{text-shadow:#f1a247 0 0 10px}50%{text-shadow:#f1ee47 0 0 10px}50%{text-shadow:#b347f1 0 0 10px}62.5%{text-shadow:#002afa 0 0 10px}75%{text-shadow:#ed709b 0 0 10px}87.5%{text-shadow:#39c5bb 0 0 10px}100%{text-shadow:#5636ed 0 0 10px}}@keyframes light_5px{0%{text-shadow:#5636ed 0 0 5px}12.5%{text-shadow:#11ee5e 0 0 5px}25%{text-shadow:#f14747 0 0 5px}37.5%{text-shadow:#f1a247 0 0 15px}50%{text-shadow:#f1ee47 0 0 5px}50%{text-shadow:#b347f1 0 0 5px}62.5%{text-shadow:#002afa 0 0 5px}75%{text-shadow:#ed709b 0 0 5px}87.5%{text-shadow:#39c5bb 0 0 5px}100%{text-shadow:#5636ed 0 0 5px}}#aside-content>.card-widget.card-info{background:linear-gradient(-45deg,#ffd8a8,#ffc1a1,#fba8b3,#e6a8d7,#c3aed6);box-shadow:0 0 5px #424444;position:relative;background-size:400% 400%;-webkit-animation:Gradient 10s ease infinite;-moz-animation:Gradient 10s ease infinite;animation:Gradient 10s ease infinite!important}@-webkit-keyframes Gradient{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}@-moz-keyframes Gradient{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}@keyframes Gradient{0%{background-position:0 50%}50%{background-position:100% 50%}100%{background-position:0 50%}}[data-theme=dark] #aside-content>.card-widget.card-info{background:#191919ee}#aside-content>.card-widget.card-info>#card-info-btn{background-color:#ff667a;border-radius:8px}#cursor{position:fixed;width:16px;height:16px;background:#5e5e5e;border-radius:8px;opacity:.25;z-index:10086;pointer-events:none;transition:.2s ease-in-out;transition-property:background,opacity,transform}#cursor.hidden{opacity:0}#cursor.hover{opacity:.1;transform:scale(2.5);-webkit-transform:scale(2.5);-moz-transform:scale(2.5);-ms-transform:scale(2.5);-o-transform:scale(2.5)}#cursor.active{opacity:.5;transform:scale(.5);-webkit-transform:scale(.5);-moz-transform:scale(.5);-ms-transform:scale(.5);-o-transform:scale(.5)}#recent-posts>.recent-post-item{background:var(--trans-light);backdrop-filter:var(--backdrop-filter);border-radius:25px;border:var(--border-style)}#aside-content .card-widget{background:var(--trans-light);backdrop-filter:var(--backdrop-filter);border-radius:18px;border:var(--border-style)}div#archive,div#page,div#post{background:var(--trans-light);backdrop-filter:var(--backdrop-filter);border:var(--border-style);border-radius:20px}#page-header.nav-fixed #nav{background:rgba(255,255,255,.75);backdrop-filter:var(--backdrop-filter)}[data-theme=dark] #page-header.nav-fixed #nav{background:rgba(0,0,0,.7)!important}[data-theme=dark] #aside-content .card-widget,[data-theme=dark] #recent-posts>.recent-post-item,[data-theme=dark] div#archive,[data-theme=dark] div#page,[data-theme=dark] div#post{background:var(--trans-dark)}[data-theme=dark] #footer::before{background:0 0!important}[data-theme=dark] #page-header::before{background:0 0!important}.read-mode #aside-content .card-widget{background:rgba(158,204,171,.5)!important}.read-mode div#post{background:rgba(158,204,171,.5)!important}[data-theme=dark] .read-mode #aside-content .card-widget{background:rgba(25,25,25,.9)!important;color:#fff}[data-theme=dark] .read-mode div#post{background:rgba(25,25,25,.9)!important;color:#fff}@keyframes clickTextAnimation{0%{opacity:1;transform:translate(-50%,-50%) scale(1)}100%{opacity:0;transform:translate(-50%,-150%) scale(.5)}}.click-text{font-family:ys,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,"Noto Sans",sans-serif}]]></content>
       
     </entry>
     
